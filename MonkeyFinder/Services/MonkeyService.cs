@@ -22,6 +22,7 @@ public class MonkeyService
         if (response.IsSuccessStatusCode)
         {
             var content = await response.Content.ReadFromJsonAsync<List<Monkey>>();
+            monkeyList = content;
         }
         return monkeyList;
     }

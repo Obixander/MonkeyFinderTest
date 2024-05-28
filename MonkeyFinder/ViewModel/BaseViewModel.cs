@@ -1,6 +1,6 @@
 ﻿namespace MonkeyFinder.ViewModel;
 
-public class BaseViewModel : INotifyPropertyChanged
+public class BaseViewModel : ObservableObject
 {
     bool isBusy;
     string title;

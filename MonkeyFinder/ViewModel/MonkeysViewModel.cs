@@ -6,13 +6,23 @@ public partial class MonkeysViewModel : BaseViewModel
     MonkeyService monkeyService;
     public ObservableCollection<Monkey> Monkeys { get; set; } = new();
 
-    public Command GetMonkeysCommand { get; }
     public MonkeysViewModel(MonkeyService monkeyService)
     {
         Title = "Monkey Finder";
         this.monkeyService = monkeyService;
+       
     }
-
+    [RelayCommand]
+    async Task GoToDetailsAsync(Monkey monkey)
+    {
+        if (monkey is null)
+            return;
+        await Shell.Current.GoToAsync($"{nameof(DetailsPage)}", true, new Dictionary<string, object>
+        {
+            { "Monkey", monkey }
+        });
+    }
+    [RelayCommand]
     async Task GetMonkeysAsync()
     {
         if (IsBusy)
